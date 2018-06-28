@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.post("/events/update",function(req,res){
+    console.log(req.headers);
     const buffer = new Buffer.from(JSON.stringify(req.body));
     const record = [
         {
@@ -32,7 +33,6 @@ app.post("/events/update",function(req,res){
     producer.send(record,(err,data)=>{
         console.log(data);
     });
-    console.log(req.body);
-    res.sendStatus(200);
+    res.status(200).send(req.headers);
 });
 app.listen(process.env.PORT || 3000);
