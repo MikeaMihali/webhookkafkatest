@@ -22,11 +22,11 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.post("/events/update",function(req,res){
     console.log(req.headers);
-    // const buffer = new Buffer.from(JSON.stringify(req.body));
+    const buffer = new Buffer.from(JSON.stringify(req.body));
     const record = [
         {
             topic: "events",
-            messages: req.body,
+            messages: buffer,
             attributes: 1 /* Use GZip compression for the payload */
         }
     ];
